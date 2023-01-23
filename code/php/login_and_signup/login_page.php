@@ -12,7 +12,7 @@ session_start();
 </head>
 <body>
 <div class="signup-form">
-    <form action="loginProcess.php" method="post" enctype="multipart/form-data">
+    <form action="login_process.php" method="post" enctype="multipart/form-data">
         <h2>Login</h2>
         <p class="hint-text">Enter Login Details</p>
         <div class="form-group">
