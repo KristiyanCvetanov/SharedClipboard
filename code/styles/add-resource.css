@@ -85,3 +85,13 @@
 .submitbtn:hover {
   background-color: #3e8e41;
 }
+
+.formFieldset {
+  min-width: 600px;
+  min-height: 200px;
+}
+
+.paragraph {
+  font-size: large;
+  margin: 15% 30% 20% 35%;
+}

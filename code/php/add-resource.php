@@ -10,7 +10,7 @@
         <script src="../js/add-resource.js"></script>
 
         <article class="resource-article">
-            <section class="dropdown-section">
+            <form class="dropdown-section">
                 <h2> Изберете тип на ресурса </h2>
                 <button class="dropbtn"> Тип ресурс </button>
                 <ul class="dropdown-content">
@@ -21,11 +21,11 @@
                     <li><a href="#" onclick="addTextarea('submitCss()', 'css код', 'code-block')"> source/css </a></li>
                     <li><a href="#" onclick="addTextarea('submitJs()', 'javascript код', 'code-block')"> source/js </a></li>
                     <li><a href="#" onclick="addTextarea('submitJson()', 'json ресурс', 'code-block')"> json </a></li>
-                    <li><a href="#" onclick="addImage()"> image </a></li>
-                    <li><a href="#" onclick="addPdf()"> pdf </a></li>
+                    <li><a href="#" onclick="addFiles('.jpg, .png, .jpeg')"> image </a></li>
+                    <li><a href="#" onclick="addFiles('.pdf')"> pdf </a></li>
                 </ul>
-            </section>
-            <section class="input-section" id="input-section"></section>
+            </form>
+            <form class="input-section" id="input-section"></form>
         </article>
     </body>
 </html>
