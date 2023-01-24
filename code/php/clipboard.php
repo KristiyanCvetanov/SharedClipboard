@@ -5,40 +5,54 @@
 
         <link href="../styles/clipboard.css" rel="stylesheet"></link>
     </head>
-<!-- import nav? create nav? -->
+    <!-- import nav? create nav? -->
     <body>
+        <script src="../js/clipboard.js"></script>
         <?php
-            $servername = "localhost";
+            $files_downloaded = 1;
+            $server_name = "localhost";
             $username = "root";
             $password = "";
             $dbname = "shared_clipboard";
 
             // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn = new mysqli($server_name, $username, $password, $dbname);
 
             // Check connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-
-            $result = mysqli_query($conn,"SELECT * FROM Clipboards");
-
+            
             echo "<table class='clipTable'>
-                    <th> ID </th>
-                    <th> Content </th>
-                    <th> Description </th>
-                    <th> Export </th>
-                    </tr>";
+                    <thead class='tableHeader'>
+                        <tr>
+                            <th class='headerElement'> Type </th>
+                            <th class='headerElement'> Content </th>
+                            <th class='headerElement'> Description </th>
+                            <th class='headerElement'> Export </th>
+                        </tr>
+                    </thead>";
+            echo "<tbody class='tableBody'>";
 
-            while($row = mysqli_fetch_array($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['ID'] . "</td>";
-                echo "<td>" . $row['CLIPBOARD_NAME'] . "</td>";
-                echo "<td>" . $row['TYPES'] . "</td>";
-                echo "<td>" . $row['IS_PRIVATE'] . "</td>"; 
-                echo "</tr>";
+            // Get clipboard id and types for the query to work
+            $clipboard_id = "1"; // $_GET['id'];
+            $types = array("text", "link"); // $_GET['types'];
+
+            foreach ($types as $type) {
+                $table_name = "resource_" . $type;
+                $result = mysqli_query($conn, "SELECT * FROM " . $table_name . " WHERE CLIPBOARD_ID = " . $clipboard_id);
+                
+                while($row = mysqli_fetch_array($result)) {
+                    echo "<tr class='tableRow'>";
+                    echo "<td>" . $type . "</td>";
+                    echo "<td class='contentData'>" . $row['CONTENT'] . "</td>";
+                    echo "<td>" . $row['DESCRIPTION'] . "</td>";
+                    echo "<td> <a href='#' onclick='exportResource(\"" . $type . "\", \"" . $row['CONTENT'] . "\")'> Export " . $type . " </a> </td>";
+                    echo "</tr>";
+                }
             }
 
+            echo "</tbody>";
             echo "</table>";
 
             mysqli_close($conn);
