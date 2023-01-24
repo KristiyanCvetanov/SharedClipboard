@@ -1,4 +1,32 @@
 .clipTable {
-    border: 1px solid black;
-    margin-left: 100px;
+    margin: 5% 10% 0% 25%;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 0px 3px 2px 3px;
 }
+
+.tableHeader {
+    width: 33%;
+    color: white;
+    background-color: rgb(63, 64, 64);
+}
+
+.tableBody {
+    width: 33%;
+    color: black;
+    background-color: rgb(213, 213, 220);
+}
+
+td, th {
+    padding: 10px 15px 10px 15px;
+}
+
+.contentData {
+    max-width: 400px;
+    overflow-wrap: break-word;
+}
+
+.tableRow:nth-of-type(odd) {
+    background-color: white;
+}
+
