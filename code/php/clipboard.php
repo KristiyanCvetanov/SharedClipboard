@@ -4,8 +4,8 @@
         <title> Клипборд </title>
 
         <link href="../styles/dynamic-table.css" rel="stylesheet"></link>
+        <?php require 'navbar.php'; ?>
     </head>
-    <!-- import nav? create nav? -->
     <body>
         <script src="../js/clipboard.js"></script>
         <?php

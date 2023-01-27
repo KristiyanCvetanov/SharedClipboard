@@ -4,8 +4,8 @@
         <title> Home </title>
 
         <link href="../styles/dynamic-table.css" rel="stylesheet"></link>
+        <?php require 'navbar.php'; ?>
     </head>
-<!-- import nav? create nav? -->
     <body>
         <?php
             $servername = "localhost";
@@ -59,7 +59,7 @@
             echo "</tbody>";
             echo "</table>";
             echo "</div>";
-
+            echo "<a name='introduction-anchor'></a>";
            
         ?>
     </body>
