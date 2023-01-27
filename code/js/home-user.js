@@ -1,0 +1,3 @@
+function routeToClipboard(clipboardId, ...types) {
+    
+}
