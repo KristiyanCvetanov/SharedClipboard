@@ -3,7 +3,7 @@
     <head>
         <title> Клипборд </title>
 
-        <link href="../styles/clipboard.css" rel="stylesheet"></link>
+        <link href="../styles/dynamic-table.css" rel="stylesheet"></link>
     </head>
     <!-- import nav? create nav? -->
     <body>
@@ -23,19 +23,20 @@
                 die("Connection failed: " . $conn->connect_error);
             }
             
-            echo "<table class='clipTable'>
-                    <thead class='tableHeader'>
-                        <tr>
-                            <th class='headerElement'> Type </th>
-                            <th class='headerElement'> Content </th>
-                            <th class='headerElement'> Description </th>
-                            <th class='headerElement'> Export </th>
-                        </tr>
-                    </thead>";
+            echo "<div class='clipContainer'>
+                    <table class='clipTable'>
+                        <thead class='tableHeader'>
+                            <tr>
+                                <th class='headerElement'> Type </th>
+                                <th class='headerElement'> Content </th>
+                                <th class='headerElement'> Description </th>
+                                <th class='headerElement'> Export </th>
+                            </tr>
+                        </thead>";
             echo "<tbody class='tableBody'>";
 
             // Get clipboard id and types for the query to work
-            $clipboard_id = "1"; // $_GET['id'];
+            $clipboard_id = "1"; // $_GET['clipboard_id'];
             $types = array("text", "link"); // $_GET['types'];
 
             foreach ($types as $type) {
@@ -43,10 +44,19 @@
                 $result = mysqli_query($conn, "SELECT * FROM " . $table_name . " WHERE CLIPBOARD_ID = " . $clipboard_id);
                 
                 while($row = mysqli_fetch_array($result)) {
+                    $link_anchor_left = "";
+                    $link_anchor_right = "";
+                    
+                    // if type is link, add anchor to content
+                    if (strcmp($type, "link") == 0) {
+                        $link_anchor_left = "<a href='" . $row['CONTENT'] . "' target='_blank'>";
+                        $link_anchor_right = "</a>";
+                    }
+
                     echo "<tr class='tableRow'>";
                     echo "<td>" . $type . "</td>";
-                    echo "<td class='contentData'>" . $row['CONTENT'] . "</td>";
-                    echo "<td>" . $row['DESCRIPTION'] . "</td>";
+                    echo "<td class='borderData'>" . $link_anchor_left . $row['CONTENT'] . $link_anchor_right . "</td>";
+                    echo "<td class='contentDescription'>" . $row['DESCRIPTION'] . "</td>";
                     echo "<td> <a href='#' onclick='exportResource(\"" . $type . "\", \"" . $row['CONTENT'] . "\")'> Export " . $type . " </a> </td>";
                     echo "</tr>";
                 }
@@ -54,6 +64,7 @@
 
             echo "</tbody>";
             echo "</table>";
+            echo "</div>";
 
             mysqli_close($conn);
         ?>

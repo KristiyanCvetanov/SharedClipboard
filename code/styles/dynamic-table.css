@@ -1,0 +1,55 @@
+.clipContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    min-width: 600px;
+}
+
+.clipTable {
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 2px 6px 4px 6px;
+    border-spacing: 0px;
+    box-shadow: 5px 5px 5px rgb(203, 197, 197);
+    background-color: rgb(231, 241, 250);
+}
+
+.tableHeader {
+    width: 33%;
+    color: white;
+    background-color: rgb(63, 64, 64);
+}
+
+.tableBody {
+    width: 33%;
+    color: black;
+    background-color: rgb(213, 213, 220);
+}
+
+td, th {
+    padding: 10px 15px 10px 15px;
+}
+
+.borderData {
+    min-width: 400px;
+    max-width: 600px;
+    overflow-wrap: break-word;
+    border: 1px solid;
+    border-image: linear-gradient(to bottom, rgb(203, 203, 203), rgb(109, 109, 109)) 0 1;
+}
+
+.contentDescription {
+    max-width: 200px;
+    overflow-wrap: break-word;
+    border-right: 1px solid;
+    border-image: linear-gradient(to bottom, rgb(203, 203, 203), rgb(109, 109, 109)) 0 1;
+}
+
+.tableRow:nth-of-type(odd) {
+    background-color: white;
+}
+
+.clipName {
+    
+}
