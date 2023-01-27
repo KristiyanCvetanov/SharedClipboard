@@ -5,7 +5,6 @@
 
         <link href="../styles/add-resource.css" rel="stylesheet"></link>
     </head>
-<!-- import nav? create nav? -->
     <body>
         <script src="../js/add-resource.js"></script>
 
