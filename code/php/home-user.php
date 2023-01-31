@@ -61,6 +61,7 @@
             echo "</div>";
             echo "<a name='introduction-anchor'></a>";
            
+            mysqli_close($conn);
         ?>
     </body>
 </html>

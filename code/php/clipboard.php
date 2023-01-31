@@ -36,8 +36,8 @@
             echo "<tbody class='tableBody'>";
 
             // Get clipboard id and types for the query to work
-            $clipboard_id = "1"; // $_GET['clipboard_id'];
-            $types = array("text", "link"); // $_GET['types'];
+            $clipboard_id = $_GET['clipboard_id'];
+            $types = $_GET['types'];
 
             foreach ($types as $type) {
                 $table_name = "resource_" . $type;
