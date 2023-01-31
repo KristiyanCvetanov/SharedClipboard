@@ -39,6 +39,9 @@
             // get all clipboards that the user is subscribed to (not implemented below)
             $result = mysqli_query($conn, $query);
 
+            $query_all_public = "SELECT * FROM Clipboards WHERE IS_PRIVATE IS false";
+            $result_all_public = mysqli_query($conn, $query_all_public);
+
             // visualize table below
             while($row = mysqli_fetch_array($result)) {
                 $clip_id_param = "clipboard_id=" . $row['ID'];
@@ -60,8 +63,39 @@
             echo "</table>";
             echo "</div>";
             echo "<a name='introduction-anchor'></a>";
-           
-            mysqli_close($conn);
+
+
+            // ALL  PUBLICS TABLE:
+            echo "<div class='clipContainer'>
+                        <table class='clipTable'>
+                            <thead class='tableHeader'>
+                                <tr>
+                                    <th class='headerElement'> Name </th>
+                                    <th class='headerElement'> Types </th>
+                                    <th class='headerElement'> Subscribe </th>
+                                </tr>
+                            </thead>
+                            <tbody class='tableBody'>";
+            while ($row = mysqli_fetch_array($result_all_public)) {
+                $clipboard_id = $row['ID'];
+                $clip_id_param = "clipboard_id=" . $clipboard_id;
+                $types_param = "";
+                $types = explode(", ", $row['TYPES']);
+
+                foreach ($types as $type) {
+                    $types_param .= "&types[]=" . $type;
+                }
+
+                echo "<tr class='tableRow'>";
+                echo "<td class='clipName'> <a href='clipboard.php?" . $clip_id_param . $types_param . "'>" . $row['CLIPBOARD_NAME'] . "</a> </td>";
+                echo "<td class='borderData'>" . $row['TYPES'] . "</td>";
+                echo "<td class='addUser'> 
+                            <button type='button' id='subscribeBtn' onclick='subscribe($user_id, $clipboard_id)'>Subscribe</button>
+                       </td>";
+                echo "</tr>";
+            }
+
+        mysqli_close($conn);
         ?>
     </body>
 </html>
