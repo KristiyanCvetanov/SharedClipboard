@@ -1,6 +1,11 @@
 function exportResource(type, content) {
     var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+
+    if (type === "image" || type === "pdf") {
+        element.setAttribute('href', content);
+    } else {
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+    }
 
     var filename = "resource";
     switch (type) {
