@@ -137,6 +137,7 @@
                 </form>
             </div>";
 
+        mysqli_close($conn);
         ?>
 
     </body>
