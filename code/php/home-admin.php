@@ -9,6 +9,8 @@
     <body>
         <script src="../js/home-admin.js"></script>
         <?php
+            #hide_subscription_area();
+
             $servername = "localhost";
             $username = "root";
             $password = "";
@@ -59,14 +61,11 @@
         $result_private = mysqli_query($conn, $query_private);
         $result_public = mysqli_query($conn, $query_public);
 
-        $current_row_private = 1;
-        $current_row_public = 1;
-
         // visualize table below
         while ($row_private = mysqli_fetch_array($result_private)) {
             // private columns
-
-            $clip_id_param = "clipboard_id=" . $row_private['ID'];
+            $clipboard_id = $row_private['ID'];
+            $clip_id_param = "clipboard_id=" . $clipboard_id;
             $types_param = "";
             $types = explode(", ", $row_private['TYPES']);
             $is_private = $row_private['IS_PRIVATE'];
@@ -78,7 +77,9 @@
             echo "<tr class='tableRow'>";
             echo "<td class='clipName'> <a href='clipboard.php?" . $clip_id_param . $types_param . "'>" . $row_private['CLIPBOARD_NAME'] . "</a> </td>";
             echo "<td class='borderData'>" . $row_private['TYPES'] . "</td>";
-            echo "<td class='addUser'> </td>";
+            echo "<td class='addUser'> 
+                       <button type='button' id='btn_at_row' onclick='unhide_subscription_area($user_id, $clipboard_id)'>Add</button>
+                  </td>";
 
 
             // public columns
@@ -129,7 +130,14 @@
         echo "</tbody>";
         echo "</table>";
         echo "</div>";
+        echo "<div id='subscription_area' hidden='hidden'>
+                <form class='inputForm'>
+                    <input type='text' placeholder='Enter user_id' class='inputUserText'>
+                    <button type='button' id='inputUserBtn' onclick='add_user_to_clipboard()'>Add User</button>
+                </form>
+            </div>";
 
         ?>
+
     </body>
 </html>
