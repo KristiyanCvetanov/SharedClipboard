@@ -1,4 +1,12 @@
-function addTextarea(submitFunc, areaPlaceholder, areaClassName) {
+function addDescriptionArea(inputSection) {
+    let descriptionArea = document.createElement("textarea");
+    descriptionArea.className = "description-box";
+    descriptionArea.id = "description-box";
+    descriptionArea.setAttribute("placeholder", "Добави коментар...");
+    inputSection.appendChild(descriptionArea);
+}
+
+function addTextarea(type, areaPlaceholder, areaClassName) {
     let inputSection = document.getElementById("input-section");
     inputSection.innerHTML = "";
 
@@ -8,47 +16,35 @@ function addTextarea(submitFunc, areaPlaceholder, areaClassName) {
     textarea.setAttribute("placeholder", "Добави " + areaPlaceholder + "...");
     inputSection.appendChild(textarea);
 
+    addDescriptionArea(inputSection);
+
     let input = document.createElement("button");
     input.className = "submitbtn";
-    input.setAttribute("type", "submit");
-    input.setAttribute("onclick", submitFunc);
+    input.setAttribute("type", "button");
+    input.setAttribute("onclick", "submitTextarea(\"" + type + "\")");
     input.innerHTML = "Submit";
     inputSection.appendChild(input);
 }
 
-function submitText() {
-    // TODO: submit text from textarea with POST request (request handled in php)
-    alert("text");
-}
+async function submitTextarea(type) {
+    let input = document.getElementById("text-box").value;
+    let description = document.getElementById("description-box").value;
 
-function submitLink() {
-    // TODO: submit link from textarea with POST request (request handled in php)
-    alert("link");
-}
+    let params = (new URL(document.location)).searchParams;
+    let clipboardId = params.get("clipboard_id");
 
-function submitPhp() {
-    // TODO: submit php code from textarea with POST request (request handled in php)
-    alert("php");
-}
+    let formData = new FormData();
+    formData.append("clipboard_id", clipboardId);
+    formData.append("input", input);
+    formData.append("type", type);
+    formData.append("description", description);
 
-function submitHtml() {
-    // TODO: submit html code from textarea with POST request (request handled in php)
-    alert("html");
-}
+    await fetch("../php/submit-text-resource.php", {
+        method: "POST",
+        body: formData
+    });
 
-function submitCss() {
-    // TODO: submit css code from textarea with POST request (request handled in php)
-    alert("css");
-}
-
-function submitJs() {
-    // TODO: submit javascript code from textarea with POST request (request handled in php)
-    alert("javascript");
-}
-
-function submitJson() {
-    // TODO: submit json from textarea with POST request (request handled in php)
-    alert("json");
+    document.getElementById("input-section").innerHTML = "";
 }
 
 function addFiles(fileTypes) {
@@ -59,6 +55,7 @@ function addFiles(fileTypes) {
     let fileForm = document.createElement("form");
     fileForm.className = "fileForm";
     fileForm.id = "fileForm";
+    fileForm.name = "fileForm";
     inputSection.appendChild(fileForm);
 
     let formFieldset = document.createElement("fieldset");
@@ -77,6 +74,8 @@ function addFiles(fileTypes) {
     paragraph.innerHTML = "Добавете " + fileType + "...";
     formFieldset.appendChild(paragraph);
 
+    addDescriptionArea(inputSection);
+
     let inputFiles = document.createElement("input");
     inputFiles.className = "browseFileBtn";
     inputFiles.id = "browseFileBtn";
@@ -88,8 +87,16 @@ function addFiles(fileTypes) {
     let inputSubmit = document.createElement("input");
     inputSubmit.className = "submitFileBtn";
     inputSubmit.id = "submitFileBtn";
-    inputSubmit.setAttribute("type", "submit");
-    inputSubmit.setAttribute("onclick", "someFunction()");
+    inputSubmit.name = "submitFileBtn";
+    inputSubmit.setAttribute("type", "button");
+    inputSubmit.setAttribute("value", "Submit");
+
+    if (fileTypes === ".pdf") {
+        inputSubmit.setAttribute("onclick", "submitFile(\"pdf\")");
+    } else {
+        inputSubmit.setAttribute("onclick", "submitFile(\"image\")");
+    }
+
     inputSection.appendChild(inputSubmit);
 
     inputFiles.addEventListener('change', () => {
@@ -124,4 +131,34 @@ function addToFileList(fileList, inputFiles) {
         bullet.innerHTML = inputFiles.item(i).name;
         fileList.appendChild(bullet);
     } 
+}
+
+async function submitFile(type) {
+    let file = document.getElementById("browseFileBtn").files[0];
+    let description = document.getElementById("description-box").value;
+
+    if (!file) {
+        throw "No file is selected to be submitted.";
+    }
+
+    let params = (new URL(document.location)).searchParams;
+    let clipboardId = params.get("clipboard_id");
+
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("new_path", "../../resources/" + file.name);
+    formData.append("type", type);
+    formData.append("clipboard_id", clipboardId);
+    formData.append("description", description);
+
+    let response = await fetch("../php/submit-file-resource.php", {
+        method: "POST",
+        body: formData
+    });
+
+    if (!response.ok) {
+        throw "Bad response from server, could not persist file.";
+    }
+
+    console.log(response);
 }

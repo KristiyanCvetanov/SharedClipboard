@@ -57,11 +57,18 @@
   justify-content: center;
   align-items: center;
   margin-left: 20%;
+  margin-top: -4%;
+}
+
+.input-section > * {
+  margin-top: 5px;
 }
 
 .text-box {
   width: 30vmax;
   height: 15vmax;
+  background-color: #ffffff;
+  margin-bottom: 12px;
 }
 
 .code-block {
@@ -69,6 +76,13 @@
   height: 15vmax;
   background-color: #EEEEEE;
   font-family: 'Courier New', Courier, monospace;
+}
+
+.description-box {
+  margin-top: 0;
+  width: 25vmax;
+  height: 10vmax;
+  background-color: #ffffff;
 }
 
 .submitbtn {
