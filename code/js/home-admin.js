@@ -10,7 +10,16 @@ function unhide_subscription_area(user, clipboard) {
     clipboard_id = clipboard;
 }
 
-function add_user_to_clipboard() {
+async function add_user_to_clipboard() {
+    let formData = new FormData();
+    formData.append("user_id", user_id)
+    formData.append("clipboard_id", clipboard_id);
+
+    await fetch("../php/add_user_to_clipboard.php", {
+        method: "POST",
+        body: formData
+    });
+
     hide_subscription_area();
 }
 

@@ -4,18 +4,15 @@ if (isset($_POST['save'])) {
     extract($_POST);
     include 'database_connect.php';
 
-    $sql = mysqli_query ($conn,"SELECT * FROM register where Email='$email' and Password='md5($pass)'");
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = mysqli_query ($conn,"SELECT * FROM USERS where EMAIL='$email' and PASSWORD='$pass'");
     $row  = mysqli_fetch_array($sql);
-    if(is_array($row))
-    {
-        $_SESSION["ID"] = $row['ID'];
-        $_SESSION["Email"]=$row['Email'];
-        $_SESSION["First_Name"]=$row['First_Name'];
-        $_SESSION["Last_Name"]=$row['Last_Name'];
-        header("Location: home.php");
+    if (is_array($row)) {
+        header("Location: ../home-user.php");
     }
-    else
-    {
+    else {
         echo "Invalid Email ID/Password";
     }
 }
