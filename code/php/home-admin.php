@@ -9,8 +9,6 @@
     <body>
         <script src="../js/home-admin.js"></script>
         <?php
-            #hide_subscription_area();
-
             $servername = "localhost";
             $username = "root";
             $password = "";

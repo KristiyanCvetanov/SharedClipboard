@@ -7,6 +7,7 @@
         <?php require 'navbar.php'; ?>
     </head>
     <body>
+        <script src="../js/home-user.js"></script>
         <?php
             $servername = "localhost";
             $username = "root";
@@ -38,8 +39,8 @@
 
             // get all clipboards that the user is subscribed to (not implemented below)
             $result = mysqli_query($conn, $query);
-
-            $query_all_public = "SELECT * FROM Clipboards WHERE IS_PRIVATE IS false";
+            $subquery_all_public = "SELECT CLIPBOARD_ID FROM `SUBSCRIPTIONS` WHERE USER_ID=$user_id";
+            $query_all_public = "SELECT * FROM CLIPBOARDS WHERE IS_PRIVATE IS false AND ID NOT IN ($subquery_all_public)";
             $result_all_public = mysqli_query($conn, $query_all_public);
 
             // visualize table below
