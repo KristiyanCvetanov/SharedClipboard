@@ -25,19 +25,8 @@
             }
 
             $user_id = "1"; // $_GET['user_id'];
-            $subquery = "SELECT CLIPBOARD_ID FROM subscriptions WHERE USER_ID = " . $user_id;
-            $query_private = "SELECT * FROM Clipboards WHERE ID IN (" . $subquery . ") AND IS_PRIVATE IS true";
-            $query_public = "SELECT * FROM Clipboards WHERE ID IN (" . $subquery . ") AND IS_PRIVATE IS false";
-
-            /*echo "<div class='allClipboards'>
-                    <div class='privateClipboards'>
-                        PRIVATE
-                    </div>
-                    <div class='publicClipboards'>
-                        PUBLIC
-                    </div>
-                   </div>";*/
-
+            $query_private = "SELECT * FROM Clipboards WHERE IS_PRIVATE IS true";
+            $query_public = "SELECT * FROM Clipboards WHERE IS_PRIVATE IS false";
 
             echo "<div class='privatesAndPublicsContainer'>
                             <table class='privatesAndPublicsTable'>
@@ -57,6 +46,7 @@
                                 </thead>
                                 
                                 <tbody class='bigTableBody'>";
+
         // get all clipboards that the user is subscribed to (not implemented below)
         $result_private = mysqli_query($conn, $query_private);
         $result_public = mysqli_query($conn, $query_public);
@@ -132,7 +122,7 @@
         echo "</div>";
         echo "<div id='subscription_area' hidden='hidden'>
                 <form class='inputForm'>
-                    <input type='text' placeholder='Enter user_id' class='inputUserText'>
+                    <input type='text' id='userInSubscriptionArea' placeholder='Enter user_id' class='inputUserText'>
                     <button type='button' id='inputUserBtn' onclick='add_user_to_clipboard()'>Add User</button>
                 </form>
             </div>";
