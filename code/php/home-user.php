@@ -9,20 +9,30 @@
     <body>
         <script src="../js/home-user.js"></script>
         <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "shared_clipboard";
+            if(!isset($_SESSION)) 
+            { 
+                session_start(); 
+            }
+            // $servername = "localhost";
+            // $username = "root";
+            // $password = "";
+            // $dbname = "shared_clipboard";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            // // Create connection
+            // $conn = new mysqli($servername, $username, $password, $dbname);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
+            // // Check connection
+            // if ($conn->connect_error) {
+            //     die("Connection failed: " . $conn->connect_error);
+            // }
+
+            $user_id = "";
+            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_SESSION['user_id'])) {
+                $user_id = $_SESSION['user_id'];
+            } else {
+                die("Not logged in!");
             }
 
-            $user_id = "1"; // $_GET['user_id'];
             $subquery = "SELECT CLIPBOARD_ID FROM subscriptions WHERE USER_ID = " . $user_id; 
             $query = "SELECT * FROM Clipboards WHERE ID IN (" . $subquery . ")";
 
@@ -56,7 +66,7 @@
                 echo "<tr class='tableRow'>";
                 echo "<td class='clipName'> <a href='clipboard.php?" . $clip_id_param . $types_param . "'>" . $row['CLIPBOARD_NAME'] . "</a> </td>";
                 echo "<td class='borderData'>" . $row['TYPES'] . "</td>";
-                echo "<td>" . (strcmp($row['IS_PRIVATE'], "1") ? "Yes" : "No") . "</td>";
+                echo "<td>" . ($row['IS_PRIVATE'] ? "Yes" : "No") . "</td>";
                 echo "</tr>";
             }
 
