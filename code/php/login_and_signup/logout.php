@@ -1,5 +1,5 @@
 <?php
+    echo "aaaaaa";
     session_start();
-    unset($_SESSION["id"]);
-    unset($_SESSION["name"]);
-    header("Location:login_page.php");
+    session_unset();
+    session_destroy();
