@@ -44,6 +44,7 @@
                 $result = mysqli_query($conn, "SELECT * FROM " . $table_name . " WHERE CLIPBOARD_ID = " . $clipboard_id);
                 
                 while($row = mysqli_fetch_array($result)) {
+                    $content = htmlentities($row['CONTENT']);
                     $link_anchor_left = "";
                     $link_anchor_right = "";
                     
@@ -55,9 +56,9 @@
 
                     echo "<tr class='tableRow'>";
                     echo "<td>" . $type . "</td>";
-                    echo "<td class='borderData'>" . $link_anchor_left . $row['CONTENT'] . $link_anchor_right . "</td>";
+                    echo "<td class='borderData'>" . $link_anchor_left . $content . $link_anchor_right . "</td>";
                     echo "<td class='contentDescription'>" . $row['DESCRIPTION'] . "</td>";
-                    echo "<td> <a href='#' onclick='exportResource(\"" . $type . "\", \"" . $row['CONTENT'] . "\")'> Export " . $type . " </a> </td>";
+                    echo "<td> <a href='#' onclick='exportResource(\"" . $type . "\", \"" . $content . "\")'> Export " . $type . " </a> </td>";
                     echo "</tr>";
                 }
             }
