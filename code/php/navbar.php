@@ -65,8 +65,10 @@
                         }
 
                         echo "<li><a href='add-resource.php" . $clipboard_param . $types_param . "'> Добави ресурс </a></li>";
-                        } else if (strcmp($current_page, 'home-user.php') == 0) {
+                    } else if (strcmp($current_page, 'home-user.php') == 0) {
                         echo "<li><a href='#subscribe-anchor'> Абонирай се </a></li>";
+                        echo "<li><a href='create-clipboard.php'> Създай клипборд </a></li>";
+                    } else if (strcmp($current_page, 'home-admin.php') == 0) {
                         echo "<li><a href='create-clipboard.php'> Създай клипборд </a></li>";
                     }
                 ?>
