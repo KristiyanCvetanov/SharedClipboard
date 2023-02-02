@@ -1,0 +1,65 @@
+.formFieldset {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5% 10% 5% 10%;
+}
+
+.inputsContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.clipName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.types {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.types1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.types2 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.access {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.submitBtn {
+    margin-top: 3%;
+    background-color: #04AA6D;
+    width: 10vmax;
+    height: 3vmax;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .submitBtn:hover {
+    background-color: #3e8e41;
+  }
