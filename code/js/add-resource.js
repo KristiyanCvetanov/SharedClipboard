@@ -1,3 +1,4 @@
+let all_users = [];
 function addDescriptionArea(inputSection) {
     let descriptionArea = document.createElement("textarea");
     descriptionArea.className = "description-box";
@@ -45,6 +46,8 @@ async function submitTextarea(type) {
     });
 
     document.getElementById("input-section").innerHTML = "";
+
+    await pushNotifications(all_users, clipboardId);
 }
 
 function addFiles(fileTypes) {
@@ -159,6 +162,32 @@ async function submitFile(type) {
     if (!response.ok) {
         throw "Bad response from server, could not persist file.";
     }
-
     console.log(response);
+
+    //await pushNotifications();
+}
+
+async function pushNotifications(users, clipboard_id) {
+    for (var i of users) {
+        console.log(i);
+        let formData = new FormData();
+        formData.append("user_id", i)
+        formData.append("clipboard_id", clipboard_id);
+        formData.append("count", "1");
+
+        await fetch("../php/push_notifications.php", {
+            method: "POST",
+            body: formData
+        });
+    }
+}
+
+function set_users(users) {
+    all_users = []
+    console.log(users.at(0));
+    for (var i of users) {
+        console.log(i);
+        all_users.push(i);
+    }
+
 }

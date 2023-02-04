@@ -16,8 +16,36 @@
                 <button class="dropbtn"> Тип ресурс </button>
                 <ul class="dropdown-content">
                     <?php
+                        $server_name = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "shared_clipboard";
+
+                        // Create connection
+                        $conn = new mysqli($server_name, $username, $password, $dbname);
+
+                        // Check connection
+                        if ($conn->connect_error) {
+                            die("Connection failed: " . $conn->connect_error);
+                        }
+
                         $clipboard_id = $_GET['clipboard_id'];
                         $types = $_GET['types'];
+
+                        $query_users_for_the_clipboard = "SELECT USER_ID FROM `SUBSCRIPTIONS` WHERE CLIPBOARD_ID=$clipboard_id";
+                        $result = mysqli_query($conn,  $query_users_for_the_clipboard);
+
+                        $list_of_users = array();
+
+                        while ($row = mysqli_fetch_array($result)) {
+                            print($row['USER_ID']);
+                            array_push($list_of_users, $row['USER_ID']);
+                        }
+
+                        $users_json = json_encode($list_of_users);
+                        echo "<script> 
+                                set_users($users_json)
+                              </script>";
 
                         foreach($types as $type) {
                             switch($type) {
