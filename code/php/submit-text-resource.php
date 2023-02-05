@@ -3,8 +3,6 @@
     $type = "resource_" . $_POST["type"];
     $clipboard_id = $_POST['clipboard_id'];
     $description = $_POST['description'];
-
-    echo $input;
     
     //connect to the database
     $servername = "localhost";
