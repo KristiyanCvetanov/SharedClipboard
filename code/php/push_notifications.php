@@ -28,7 +28,7 @@ $email = mysqli_fetch_array($result)['EMAIL'];
 echo "<script>
         console.log($email); 
       </script>";
-$send_mail_result = mail($email, "You have new notification from clipboards", "No subject");
+$send_mail_result = mail($email, "You have new notification from clipboards", "You are great!");
 if( $send_mail_result) {
     echo "<script>
         console.log('successfully'); 
