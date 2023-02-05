@@ -98,7 +98,7 @@
                 }
 
                 echo "<tr class='tableRow'>";
-                echo "<td class='clipName'> <a href='clipboard.php?" . $clip_id_param . $types_param . "'>" . $row['CLIPBOARD_NAME'] . "</a> </td>";
+                echo "<td class='clipName'> " . $row['CLIPBOARD_NAME'] . " </td>";
                 echo "<td class='borderData'>" . $row['TYPES'] . "</td>";
                 echo "<td class='addUser'> 
                             <button type='button' id='subscribeBtn' onclick='subscribe($user_id, $clipboard_id)'>Subscribe</button>

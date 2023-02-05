@@ -45,6 +45,7 @@ async function submitTextarea(type) {
     });
 
     document.getElementById("input-section").innerHTML = "";
+    window.history.go(-2);
 }
 
 function addFiles(fileTypes) {
@@ -85,7 +86,7 @@ function addFiles(fileTypes) {
     inputSection.appendChild(inputFiles);
 
     let inputSubmit = document.createElement("input");
-    inputSubmit.className = "submitFileBtn";
+    inputSubmit.className = "submitbtn";
     inputSubmit.id = "submitFileBtn";
     inputSubmit.name = "submitFileBtn";
     inputSubmit.setAttribute("type", "button");
@@ -160,5 +161,6 @@ async function submitFile(type) {
         throw "Bad response from server, could not persist file.";
     }
 
-    console.log(response);
+    document.getElementById("input-section").innerHTML = "";
+    window.history.go(-2);
 }

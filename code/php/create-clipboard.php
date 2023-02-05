@@ -115,9 +115,6 @@
             }
 
             $access = $_POST['access'] === "public" ? 0 : 1;
-            echo "clipboard_name: " . $clipboard_name . "\n";       
-            echo "types: " . implode(", ", $types);
-            echo "access: " . $access; 
 
             if (!isset($clipboard_name) || empty($types) || !isset($access)) {
                 die("Invalid form submitted.");
@@ -149,7 +146,6 @@
             mysqli_query($conn, $clipboards_query);
             $result = mysqli_query($conn, $clip_id_query);
             $clipboard_id = mysqli_fetch_array($result)['ID'];
-            echo "new_clip_id: " . $clipboard_id; 
 
             $user_id = "";
             if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_SESSION['user_id'])) {
