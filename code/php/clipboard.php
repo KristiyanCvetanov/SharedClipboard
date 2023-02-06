@@ -45,6 +45,8 @@
                 
                 while($row = mysqli_fetch_array($result)) {
                     $content = htmlentities($row['CONTENT']);
+                    $content = str_replace("\n", "", $content);
+
                     $link_anchor_left = "";
                     $link_anchor_right = "";
                     
