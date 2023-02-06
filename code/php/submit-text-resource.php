@@ -1,5 +1,5 @@
 <?php
-    require 'login_and_signup/database_connect.php'
+    require 'login_and_signup/database_connect.php';
     
     $input = $_POST["input"];
     $type = "resource_" . $_POST["type"];
