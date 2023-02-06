@@ -13,24 +13,31 @@
             { 
                 session_start(); 
             }
-            // $servername = "localhost";
-            // $username = "root";
-            // $password = "";
-            // $dbname = "shared_clipboard";
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "shared_clipboard";
 
             // // Create connection
-            // $conn = new mysqli($servername, $username, $password, $dbname);
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
             // // Check connection
-            // if ($conn->connect_error) {
-            //     die("Connection failed: " . $conn->connect_error);
-            // }
+             if ($conn->connect_error) {
+                 die("Connection failed: " . $conn->connect_error);
+             }
 
             $user_id = "";
             if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_SESSION['user_id'])) {
                 $user_id = $_SESSION['user_id'];
             } else {
                 die("Not logged in!");
+            }
+
+            $query_user = "SELECT * FROM USERS WHERE ID=$user_id";
+            $result = mysqli_query($conn, $query_user);
+            $row = mysqli_fetch_array($result);
+            if ($row['IS_ADMIN']) {
+                header("Location: home-admin.php");
             }
 
             $subquery = "SELECT CLIPBOARD_ID FROM subscriptions WHERE USER_ID = " . $user_id; 
