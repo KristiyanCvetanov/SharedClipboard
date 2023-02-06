@@ -101,22 +101,56 @@ VALUES
 INSERT INTO CLIPBOARDS (CLIPBOARD_NAME, TYPES, IS_PRIVATE)
 VALUES
     ('clip1', 'text, link', false),
-    ('clip2', 'image', true);
+    ('clip2', 'image', false),
+    ('clip3', 'js, php, pdf', false),
+    ('clip4', 'html, css, json', true);
 
 INSERT INTO SUBSCRIPTIONS (USER_ID, CLIPBOARD_ID)
 VALUES
-    (1, 1),
-    (3, 2);
+    (2, 1),
+    (2, 2),
+    (3, 1),
+    (3, 3),
+    (3, 4);
 
 INSERT INTO NOTIFICATIONS (USER_ID, CLIPBOARD_ID, COUNT)
 VALUES
-    (1, 1, 2),
-    (3, 2, 3);
+    (2, 1, 2),
+    (3, 3, 1);
 
 INSERT INTO RESOURCE_TEXT (CLIPBOARD_ID, DESCRIPTION, CONTENT)
 VALUES
-    (1, "nqkuv tekst", "uuuuuuuuuuuuuuuuu aaaaaaaaaaaaaaaaa");
+    (1, "some placeholder text", "lorem ipsum dolor sit amet"),
+    (1, "unique text", "unique");
 
 INSERT INTO RESOURCE_LINK (CLIPBOARD_ID, DESCRIPTION, CONTENT)
 VALUES
-    (1, "nqkuv link", "https://www.google.com");
+    (1, "link to google", "https://www.google.com"),
+    (1, "FMI Web Site", "https://www.fmi.uni-sofia.bg/en");
+
+INSERT INTO RESOURCE_JS (CLIPBOARD_ID, DESCRIPTION, CONTENT)
+VALUES
+    (3, "generates random integer", "function generateRandomInteger(max) {
+    return Math.floor(Math.random() * max) + 1;
+}"),
+    (3, "alerts", "alert('Hello! I am an alert box!!');");
+
+INSERT INTO RESOURCE_PHP (CLIPBOARD_ID, DESCRIPTION, CONTENT)
+VALUES
+    (3, "hello world on PHP", "<?php echo 'Hello World'; ?>"),
+    (3, "Get system information from PHP", "<?php phpinfo(); ?>");
+
+INSERT INTO RESOURCE_HTML (CLIPBOARD_ID, DESCRIPTION, CONTENT)
+VALUES
+    (4, "hello world page", "<html>
+ <head>
+  <title>Hello world</title>
+ </head>
+ <body>
+ <p class='hello'>Hello World</p>
+ </body>
+</html>");
+
+INSERT INTO RESOURCE_CSS (CLIPBOARD_ID, DESCRIPTION, CONTENT)
+VALUES
+    (4, "style for hello world paragraph", ".hello { margin-top: 3%; font-size: 16px; }");
