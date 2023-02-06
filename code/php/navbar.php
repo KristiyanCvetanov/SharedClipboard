@@ -2,6 +2,7 @@
 <html>
     <head>
         <link href="../styles/navbar.css" rel="stylesheet"></link>
+        <?php require 'login_and_signup/database_connect.php' ?>
     </head>
     <body>
         <script src="../js/navbar.js"></script>
@@ -19,18 +20,18 @@
                 exit();
             }
 
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "shared_clipboard";
+            // $servername = "localhost";
+            // $username = "root";
+            // $password = "";
+            // $dbname = "shared_clipboard";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            // // Create connection
+            // $conn = new mysqli($servername, $username, $password, $dbname);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            // // Check connection
+            // if ($conn->connect_error) {
+            //     die("Connection failed: " . $conn->connect_error);
+            // }
 
             $user_query = "SELECT IS_ADMIN FROM USERS WHERE ID = " . $user_id;
             $result = mysqli_query($conn, $user_query);

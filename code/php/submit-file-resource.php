@@ -1,4 +1,6 @@
-<?php 
+<?php
+    require 'login_and_signup/database_connect.php'
+
     $name = $_FILES['file']['name'];
     $new_path = $_POST['new_path'];
     
@@ -12,18 +14,18 @@
         exit();
     }
     
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "shared_clipboard";
+    // $servername = "localhost";
+    // $username = "root";
+    // $password = "";
+    // $dbname = "shared_clipboard";
     
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    // // Create connection
+    // $conn = new mysqli($servername, $username, $password, $dbname);
     
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    // // Check connection
+    // if ($conn->connect_error) {
+    //     die("Connection failed: " . $conn->connect_error);
+    // }
     
     $type = "resource_" . $_POST['type'];
     $clipboard_id = $_POST['clipboard_id'];

@@ -1,16 +1,18 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "shared_clipboard";
+    require 'login_and_signup/database_connect.php'
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    // $servername = "localhost";
+    // $username = "root";
+    // $password = "";
+    // $dbname = "shared_clipboard";
+
+    // // Create connection
+    // $conn = new mysqli($servername, $username, $password, $dbname);
     
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    // // Check connection
+    // if ($conn->connect_error) {
+    //     die("Connection failed: " . $conn->connect_error);
+    // }
 
     $clipboard_id = $_POST['clipboard_id'];
     $user_id = $_POST['user_id'];

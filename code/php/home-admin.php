@@ -22,18 +22,18 @@
                 die("Not logged in!");
             }
 
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "shared_clipboard";
+            // $servername = "localhost";
+            // $username = "root";
+            // $password = "";
+            // $dbname = "shared_clipboard";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            // // Create connection
+            // $conn = new mysqli($servername, $username, $password, $dbname);
 
-            // Check connection
-            if ($conn -> connect_error) {
-                die("Connection failed: " . $conn -> connect_error);
-            }
+            // // Check connection
+            // if ($conn -> connect_error) {
+            //     die("Connection failed: " . $conn -> connect_error);
+            // }
 
             $query_user = "SELECT * FROM USERS WHERE ID=$user_id";
             $result = mysqli_query($conn, $query_user);

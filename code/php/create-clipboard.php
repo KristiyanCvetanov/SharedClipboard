@@ -127,18 +127,18 @@
             $types_param .= $types[count($types) - 1];
 
             
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "shared_clipboard";
+            // $servername = "localhost";
+            // $username = "root";
+            // $password = "";
+            // $dbname = "shared_clipboard";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
+            // // Create connection
+            // $conn = new mysqli($servername, $username, $password, $dbname);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
+            // // Check connection
+            // if ($conn->connect_error) {
+            //     die("Connection failed: " . $conn->connect_error);
+            // }
 
             $clipboards_query = "INSERT INTO CLIPBOARDS (CLIPBOARD_NAME, TYPES, IS_PRIVATE) VALUES (\"" . $clipboard_name . "\", \"" . $types_param . "\", " . $access . ")";
             $clip_id_query = "SELECT ID FROM CLIPBOARDS ORDER BY ID DESC LIMIT 1";
