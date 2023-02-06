@@ -1,0 +1,18 @@
+
+.enter_user_id {
+    width: 10vmax;
+    height: 2vmax;
+    font-size: 16px;
+}
+
+.enter_user_btn {
+    margin-top: 3%;
+    background-color: #04AA6D;
+    width: 10vmax;
+    height: 3vmax;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@
         <title> Home </title>
 
         <link href="../styles/dynamic-table.css" rel="stylesheet"></link>
+        <link href="../styles/admin-page.css" rel="stylesheet"></link>
         <?php require 'navbar.php'; ?>
     </head>
 <!-- import nav? create nav? -->
@@ -137,9 +138,9 @@
         echo "</table>";
         echo "</div>";
         echo "<div id='subscription_area' hidden='hidden'>
-                <form class='inputForm'>
-                    <input type='text' id='userInSubscriptionArea' placeholder='Enter user_id' class='inputUserText'>
-                    <button type='button' id='inputUserBtn' onclick='add_user_to_clipboard()'>Add User</button>
+                <form class='inputFormAdmin'>
+                    <input type='text' class='enter_user_id' id='userInSubscriptionArea' placeholder='Enter user_id' class='inputUserText'>
+                    <button type='button' class='enter_user_btn' id='inputUserBtn' onclick='add_user_to_clipboard()'>Add User</button>
                 </form>
             </div>";
 
