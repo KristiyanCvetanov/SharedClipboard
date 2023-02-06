@@ -10,6 +10,18 @@
     <body>
         <script src="../js/home-admin.js"></script>
         <?php
+            if(!isset($_SESSION))
+            {
+                session_start();
+            }
+
+            $user_id = "";
+            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] && isset($_SESSION['user_id'])) {
+                $user_id = $_SESSION['user_id'];
+            } else {
+                die("Not logged in!");
+            }
+
             $servername = "localhost";
             $username = "root";
             $password = "";
@@ -23,7 +35,12 @@
                 die("Connection failed: " . $conn -> connect_error);
             }
 
-            $user_id = "1"; // $_GET['user_id'];
+            $query_user = "SELECT * FROM USERS WHERE ID=$user_id";
+            $result = mysqli_query($conn, $query_user);
+            $row = mysqli_fetch_array($result);
+            if (!$row['IS_ADMIN']) {
+                header("Location: home-user.php");
+            }
             $query_private = "SELECT * FROM Clipboards WHERE IS_PRIVATE IS true";
             $query_public = "SELECT * FROM Clipboards WHERE IS_PRIVATE IS false";
 
