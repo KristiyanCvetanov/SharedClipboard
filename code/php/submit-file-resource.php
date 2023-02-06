@@ -1,5 +1,5 @@
 <?php
-    require 'login_and_signup/database_connect.php'
+    require 'login_and_signup/database_connect.php';
 
     $name = $_FILES['file']['name'];
     $new_path = $_POST['new_path'];

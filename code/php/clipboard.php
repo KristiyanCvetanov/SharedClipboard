@@ -10,18 +10,6 @@
         <script src="../js/clipboard.js"></script>
         <?php
             $files_downloaded = 1;
-            // $server_name = "localhost";
-            // $username = "root";
-            // $password = "";
-            // $dbname = "shared_clipboard";
-
-            // // Create connection
-            // $conn = new mysqli($server_name, $username, $password, $dbname);
-
-            // // Check connection
-            // if ($conn->connect_error) {
-            //     die("Connection failed: " . $conn->connect_error);
-            // }
             
             echo "<div class='clipContainer'>
                     <table class='clipTable'>

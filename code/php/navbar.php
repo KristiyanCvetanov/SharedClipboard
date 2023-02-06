@@ -2,7 +2,7 @@
 <html>
     <head>
         <link href="../styles/navbar.css" rel="stylesheet"></link>
-        <?php require 'login_and_signup/database_connect.php' ?>
+        <?php require 'login_and_signup/database_connect.php'; ?>
     </head>
     <body>
         <script src="../js/navbar.js"></script>
